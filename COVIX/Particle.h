@@ -30,7 +30,7 @@ public:
 
 
 	Particle(void);
-	Particle(float, float);
+	//Particle(float, float);
 	virtual ~Particle(void);
 
 	void init(int);
@@ -42,7 +42,7 @@ public:
 	//virtual void drawTex(DrawData&);
 	//virtual void update(UpdateData&);
 
-	void spin(float);
+	//void spin(float);
 
 };
 

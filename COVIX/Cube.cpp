@@ -61,8 +61,8 @@ void Cube::draw(DrawData& data)
 		float a = 1-i/temp;
 		double s = 5 + 5 * (i / temp);
 		glColor4f(0.0, 1.0, 1.0, a);
-		//glutSolidCube(s);
-		glutSolidSphere(s, 100, 100);
+		glutSolidCube(s);
+		//glutSolidSphere(s, 100, 100);
 	}
 
 

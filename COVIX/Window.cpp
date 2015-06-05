@@ -34,6 +34,9 @@ void Window::initialize(void)
 	Globals::Skybox.right = Texture("Skybox_Water222_right.ppm");
 	//Globals::head.head = Texture("head.ppm");
 
+	//Globals::particle.LoadGLTextures();
+
+
     //Setup the light
     Vector4 lightPos0(0.0, 10.0, 15.0, 1.0);
 	Vector4 lightPos(7.0, 7.0, 0.0, 1.0);

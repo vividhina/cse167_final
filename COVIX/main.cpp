@@ -61,9 +61,15 @@ int main(int argc, char *argv[])
 	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
 
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA );
-
+	//glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA );
+	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
     
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
+	glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);				// Really Nice Point Smoothing
+
+
+
+
     //Register callback functions:
     glutDisplayFunc(Window::displayCallback);
     glutReshapeFunc(Window::reshapeCallback);
