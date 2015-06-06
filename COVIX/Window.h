@@ -1,6 +1,6 @@
 #ifndef CSE167_Window_h
 #define CSE167_Window_h
-
+#define PI -3.1415926535897932384626
 class Window	  // OpenGL output window related routines
 {
     

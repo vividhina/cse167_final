@@ -246,13 +246,64 @@ void Cube::spin(float radians)
     toWorld = toWorld * rotation;
 }
 
-void Cube::r_rotate(void)
+void Cube::rotate(int type)
 {
-	//Matrix4 rotation;
-	//rotation.makeRotateY(radians);
+	if (rotate_num == 0)
+	{
+		toWorld_m30 = toWorld.m[3][0];
+		toWorld_m31 = toWorld.m[3][1];
+		toWorld_m32 = toWorld.m[3][2];
+	}
 
-	//toWorld = toWorld * rotation;
+	rotate_num++;
+	Matrix4 translation;	
+	Matrix4 translation2;	
+	Matrix4 rotation;
+	
+	if (type == 1)
+	{
+		translation.makeTranslate(-toWorld_m30 - 2.5, -toWorld_m31 + 2.5, -toWorld_m32);
+		translation2.makeTranslate(toWorld_m30 + 2.5, toWorld_m31 - 2.5, toWorld_m32);
+		rotation.makeRotateZ(PI / 16.0);
+	}
+	else if (type == 2)
+	{
+		translation.makeTranslate(-toWorld_m30 + 2.5, -toWorld_m31 + 2.5, -toWorld_m32);
+		translation2.makeTranslate(toWorld_m30 - 2.5, toWorld_m31 - 2.5, toWorld_m32);
+		rotation.makeRotateZ(-PI / 16.0);
+	}
+	else if (type == 3)
+	{
+		translation.makeTranslate(-toWorld_m30, -toWorld_m31 + 2.5, -toWorld_m32 + 2.5);
+		translation2.makeTranslate(toWorld_m30, toWorld_m31 - 2.5, toWorld_m32 - 2.5);
+		rotation.makeRotateX(PI / 16.0);
+	}
+	else if (type == 4)
+	{
+		translation.makeTranslate(-toWorld_m30, -toWorld_m31 + 2.5, -toWorld_m32 - 2.5);
+		translation2.makeTranslate(toWorld_m30, toWorld_m31 - 2.5, toWorld_m32 + 2.5);
+		rotation.makeRotateX(-PI / 16.0);
+	}
+
+	toWorld = translation * toWorld;
+	toWorld = rotation * toWorld;
+	toWorld = translation2 * toWorld;
+
+	if (rotate_num == 8)
+	{
+		rotate_num = 0;
+		Window::r_flag = 0;
+		Vector3 position(Globals::cube.toWorld.m[3][0], Globals::cube.toWorld.m[3][1], Globals::cube.toWorld.m[3][2]);
+		position.print("New cube position");
+	}
 }
+
+//void Cube::get_current_toWorld()
+//{
+//	toWorld_m30 = toWorld.m[3][0];
+//	toWorld_m31 = toWorld.m[3][1];
+//	toWorld_m32 = toWorld.m[3][2];
+//}
 
 void Cube::test_pingyi(void)
 {
@@ -261,8 +312,9 @@ void Cube::test_pingyi(void)
 	rotation.makeTranslate(-1, 0, 0);
 	toWorld = toWorld * rotation;
 	if (test_pingyi_length == 10)
-	{test_pingyi_length = 0;
-	Window::r_flag = 0;
+	{
+		test_pingyi_length = 0;
+		Window::r_flag = 0;
 	}
 		
 }

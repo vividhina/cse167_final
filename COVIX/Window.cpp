@@ -10,7 +10,7 @@
 #include "Cube.h"
 #include "Matrix4.h"
 #include "Globals.h"
-#define PI -3.1415926535897932384626
+
 int Window::width  = 512;   //Set window width in pixels here
 int Window::height = 512;   //Set window height in pixels here
 int flag = 0; 
@@ -185,7 +185,7 @@ void Window::displayCallback()
 		glDisable(GL_LIGHTING);
 		Globals::lightposi.draw(Globals::drawData);
 		//Globals::cube1.draw(Globals::drawData);
-		Globals::floor.draw(Globals::drawData);
+		//Globals::floor.draw(Globals::drawData);
 		//Globals::head.draw(Globals::drawData);
 
 
@@ -201,8 +201,8 @@ void Window::displayCallback()
 
 		//idty = walk*idty;
 	}
-	if (r_flag == 1)
-		Globals::cube.test_pingyi();
+	if (r_flag != 0)
+		Globals::cube.rotate(r_flag);
 	//else if (flag == 1){
 	//	//glDisable(GL_LIGHTING);
 	//	Globals::house.draw(Globals::drawData);
@@ -228,6 +228,7 @@ void Window::keyboard(unsigned char key, int x, int y){
 	Matrix4 T;
 	Matrix4 R;
 	Matrix4 S;
+	Vector3 v3(0,0,1);
 	float len = 2.5;
 	float a = Globals::cube.toWorld.m[3][0];
 	float b = Globals::cube.toWorld.m[3][1];
@@ -324,6 +325,10 @@ void Window::keyboard(unsigned char key, int x, int y){
 		T.makeTranslate(-len, +len, 0);
 		Globals::cube.toWorld = T * Globals::cube.toWorld;
 		break;
+	case 'v':
+		R.makeRotateArbitrary(v3,PI / 4.0);
+		Globals::cube.toWorld = R * Globals::cube.toWorld;
+		break;
 	case 'n':
 		R.makeRotateZ(PI / 4.0);
 		Globals::cube.toWorld = R * Globals::cube.toWorld;
@@ -386,6 +391,7 @@ void Window::specialkey(int key, int x, int y){
 	Vector3 e;   //Center of Projection
 	Vector3 d;   //Look At
 	Vector3 up;  //Up Vector ^
+	//Globals::cube.get_current_toWorld();
 	switch (key) {
 	//case GLUT_KEY_F1:
 	//	e.set(0.0, 0.0, 20.0);
@@ -402,7 +408,7 @@ void Window::specialkey(int key, int x, int y){
 	//	flag = 1;
 	//	//idleCallback();
 	//	break;
-	case GLUT_KEY_F3:
+	case GLUT_KEY_RIGHT:
 		//e.set(-28.33, 11.66, 23.33);
 		//d.set(-5, 0, 0);
 		//up.set(0, 1, 0.5);
@@ -410,19 +416,19 @@ void Window::specialkey(int key, int x, int y){
 		r_flag = 1;
 		//idleCallback();
 		break;
-	case GLUT_KEY_F4:
+	case GLUT_KEY_LEFT:
 		//e.set(0.0, 0.0, 20.0);
 		//Globals::camera.ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
 		r_flag = 2;
 		//idleCallback();
 		break;
-	case GLUT_KEY_F5:
+	case GLUT_KEY_UP:
 		//e.set(0.0, 0.0, 20.0);
 		//Globals::camera.ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
 		r_flag = 3;
 		//idleCallback();
 		break;
-	case GLUT_KEY_F6:
+	case GLUT_KEY_DOWN:
 		//e.set(0.0, 0.0, 20.0);
 		//Globals::camera.ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
 		r_flag = 4;

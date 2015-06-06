@@ -29,9 +29,15 @@ public:
     
     void spin(float);
 	void test_pingyi(void);
-	void r_rotate(void);
+	void rotate(int);
 
 	float test_pingyi_length;
+	float rotate_num;
+
+	float toWorld_m30;
+	float toWorld_m31;
+	float toWorld_m32;
+	//void get_current_toWorld();
 };
 
 #endif
