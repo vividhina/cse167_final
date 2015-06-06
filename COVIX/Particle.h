@@ -6,6 +6,7 @@
 #include "bmp.h"
 #include <stdlib.h>
 #include <stdio.h>
+#define	MAX_PARTICLES	1000		// Number Of Particles To Create
 
 class Particle : public Drawable
 {
@@ -13,20 +14,20 @@ class Particle : public Drawable
 public:
 
 	bool	active;					// Active (Yes/No)
-	float	life;					// Particle Life
-	float	fade;					// Fade Speed
-	float	r;						// Red Value
-	float	g;						// Green Value
-	float	b;						// Blue Value
-	float	x;						// X Position
-	float	y;						// Y Position
-	float	z;						// Z Position
-	float	xi;						// X Direction
-	float	yi;						// Y Direction
-	float	zi;						// Z Direction
-	float	xg;						// X Gravity
-	float	yg;						// Y Gravity
-	float	zg;						// Z Gravity
+	float	life[MAX_PARTICLES];					// Particle Life
+	float	fade[MAX_PARTICLES];					// Fade Speed
+	float	r[MAX_PARTICLES];						// Red Value
+	float	g[MAX_PARTICLES];						// Green Value
+	float	b[MAX_PARTICLES];						// Blue Value
+	float	x[MAX_PARTICLES];						// X Position
+	float	y[MAX_PARTICLES];						// Y Position
+	float	z[MAX_PARTICLES];						// Z Position
+	float	xi[MAX_PARTICLES];						// X Direction
+	float	yi[MAX_PARTICLES];						// Y Direction
+	float	zi[MAX_PARTICLES];						// Z Direction
+	float	xg[MAX_PARTICLES];						// X Gravity
+	float	yg[MAX_PARTICLES];						// Y Gravity
+	float	zg[MAX_PARTICLES];						// Z Gravity
 
 
 	Particle(void);

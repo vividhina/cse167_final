@@ -3,14 +3,14 @@
 Camera::Camera()
 {
     c.identity();
-    e.set(0.0, 0.0, 20.0);
+    e.set(25.0, 10.0, 40.0);
     d.set(0.0, 0.0, 0.0);
     up.set(0.0, 1.0, 0.0);
     
     //Pre-define a camera matrix (and its inverse) that are shifted 'e' from the origin
     //This is used as a default camera position for Project 1
-    c.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, e[0], e[1], e[2], 1);
-    ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
+    //c.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, e[0], e[1], e[2], 1);
+    //ci.set(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, -e[0], -e[1], -e[2], 1);
 }
 
 Camera::~Camera()

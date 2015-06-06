@@ -22,6 +22,8 @@ Matrix4 walk;
 void Window::initialize(void)
 {
 	Globals::particle.init(10);
+	Globals::camera.set(Globals::camera.e, Globals::camera.d, Globals::camera.up);
+
 	idty.identity();
 	walk.makeTranslate(0, 0, 0.01);
 	Matrix4 T_sphere;
@@ -42,7 +44,7 @@ void Window::initialize(void)
 	Vector4 lightPos(7.0, 7.0, 0.0, 1.0);
 	Vector4 lightPos1(0.0, 0.0, 1.0, 0.0);
     Globals::light.position = lightPos0;
-    Globals::light.quadraticAttenuation = 0.02;
+    Globals::light.quadraticAttenuation = 0.00;
 
 	Globals::directional.position = lightPos1;
 	Globals::directional.quadraticAttenuation = 0.02;
@@ -63,6 +65,9 @@ void Window::initialize(void)
 
 	T_sphere.makeTranslate(Globals::point.position.toVector3());
 	Globals::sphere.toWorld = T_sphere*Globals::sphere.toWorld;
+
+	T_sphere.makeTranslate(lightPos0.toVector3());
+	Globals::lightposi.toWorld = T_sphere*Globals::lightposi.toWorld;
 
 	Vector3 Z(0.0, 0.0, -1.0);
 	float angle = Globals::spot.position.toVector3().angle(Z);
@@ -166,11 +171,15 @@ void Window::displayCallback()
 	if (light_type == 3)
 		glEnable(GL_LIGHT3);
     //Draw the cube!
+	glDisable(GL_LIGHTING);
 	if (flag == 0){
 		//glDisable(GL_LIGHT0);
 		//glEnable(GL_LIGHT0);
-		//Globals::cube.draw(Globals::drawData);
+		
 		Globals::particle.draw(Globals::drawData);
+		Globals::cube.draw(Globals::drawData);
+		glDisable(GL_LIGHTING);
+		Globals::lightposi.draw(Globals::drawData);
 		//Globals::cube1.draw(Globals::drawData);
 		//Globals::cube2.draw(Globals::drawData);
 		//Globals::head.draw(Globals::drawData);

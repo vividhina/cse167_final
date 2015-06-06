@@ -12,6 +12,8 @@ Cube Globals::Skybox = Cube(1000.0);
 
 Sphere Globals::sphere(1.0, 20, 16);
 
+Sphere Globals::lightposi(1.0, 20, 16);
+
 Sphere Globals::cone(1.0, 20, 16);
 
 House Globals::house = House();

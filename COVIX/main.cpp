@@ -37,9 +37,13 @@ int main(int argc, char *argv[])
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);   //Open an OpenGL context with double buffering, RGB colors, and depth buffering
     glutInitWindowSize(Window::width, Window::height);          //Set initial window size
     glutCreateWindow("UCSD CSE 167 - Project 1 - OpenGL Cube"); //Open window and set window title
+
     
     glEnable(GL_DEPTH_TEST);                                    //Enable depth buffering
-    glClear(GL_DEPTH_BUFFER_BIT);                               //Clear depth buffer
+    //glClear(GL_DEPTH_BUFFER_BIT);                               //Clear depth buffer
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//glClearDepth(1.0f);									// Depth Buffer Setup
+	glDisable(GL_DEPTH_TEST);							// Disable Depth Testing
     glClearColor(0.0, 0.0, 0.0, 0.0);                           //Set clear color to black
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);                  //Set polygon drawing mode to fill front and back of each polygon
     glDisable(GL_CULL_FACE);                                    //Disable backface culling to render both sides of polygons
@@ -60,9 +64,10 @@ int main(int argc, char *argv[])
     glEnable(GL_LIGHTING);                                      //Enable lighting
 	glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
 
-	glEnable(GL_BLEND);
+	//glEnable(GL_BLEND);
 	//glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA );
-	glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE);					// Type Of Blending To Perform
     
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);	// Really Nice Perspective Calculations
 	glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);				// Really Nice Point Smoothing

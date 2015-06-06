@@ -17,7 +17,9 @@ Sphere::Sphere(double radius, int slices, int stacks) : Drawable()
 
 void Sphere::draw(DrawData& data)
 {
-    material.apply();
+    //material.apply();
+	Color white(1.0, 1.0, 1.0);
+	glColor3fv(white.ptr());
     
     glMatrixMode(GL_MODELVIEW);
     

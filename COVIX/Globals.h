@@ -27,6 +27,7 @@ public:
 	//static Cylinder head;
 	static House house;
 	static Sphere sphere;
+	static Sphere lightposi;
 	static Sphere cone;
     static Light light;
 	static Light directional;
