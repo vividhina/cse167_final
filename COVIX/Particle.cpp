@@ -75,6 +75,26 @@ Particle::Particle(){}
 
 Particle::~Particle(){}
 
+void Particle::initial_position(float x0, float y0, float z0)
+{
+	for (int i = 0; i < MAX_PARTICLES; i++)
+	{
+		x_init[i] += x0;
+		y_init[i] += y0;
+		z_init[i] += z0;
+	}
+}
+
+void Particle::set_initial_position(float x0, float y0, float z0)
+{
+	for (int i = 0; i < MAX_PARTICLES; i++)
+	{
+		x_init[i] = x0;
+		y_init[i] = y0;
+		z_init[i] = z0;
+	}
+}
+
 void Particle::init(int loop)
 {
 	LoadGLTextures();
@@ -82,6 +102,9 @@ void Particle::init(int loop)
 		active = true;								// Make All The Particles Active
 		life[i] = 1.0f;								// Give All The Particles Full Life
 		fade[i] = float(rand() % 100) / 1000.0f + 0.003f;	// Random Fade Speed
+		x[i] = x_init[i];
+		y[i] = y_init[i];
+		z[i] = z_init[i];
 		r[i] = colors[loop*(12 / MAX_PARTICLES)][0];	// Select Red Rainbow Color
 		g[i] = colors[loop*(12 / MAX_PARTICLES)][1];	// Select Red Rainbow Color
 		b[i] = colors[loop*(12 / MAX_PARTICLES)][2];	// Select Red Rainbow Color
@@ -140,9 +163,9 @@ void Particle::draw(DrawData& data)
 			{
 				life[i] = 1.0f;					// Give It New Life
 				fade[i] = float(rand() % 100) / 1000.0f + 0.003f;	// Random Fade Value
-				x[i] = 0.0f;						// Center On X Axis
-				y[i] = 0.0f;						// Center On Y Axis
-				z[i] = 0.0f;						// Center On Z Axis
+				x[i] = x_init[i];
+				y[i] = y_init[i];
+				z[i] = z_init[i];
 				xi[i] = xspeed + float((rand() % 60) - 32.0f);	// X Axis Speed And Direction
 				yi[i] = yspeed + float((rand() % 60) - 30.0f);	// Y Axis Speed And Direction
 				zi[i] = float((rand() % 60) - 30.0f);	// Z Axis Speed And Direction

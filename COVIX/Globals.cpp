@@ -4,7 +4,7 @@ Camera Globals::camera = Camera();
 
 Cube Globals::cube = Cube(10.0,1.0);
 //Cube Globals::cube1 = Cube(11.0,0.5);
-//Cube Globals::cube2 = Cube(12.0,0.2);
+Floor Globals::floor = Floor(5);
 
 Cube Globals::Skybox = Cube(1000.0);
 

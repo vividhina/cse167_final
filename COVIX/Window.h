@@ -6,7 +6,7 @@ class Window	  // OpenGL output window related routines
     
 public:
     
-    static int width, height; 	            // window size
+    static int width, height, r_flag; 	            // window size
 	static int light_type;
     
     static void initialize(void);
@@ -19,7 +19,6 @@ public:
 //	static Vector3 trackBallMapping(int, int);
 	static void OnMouseMove(int, int);
 
-    
 };
 
 #endif

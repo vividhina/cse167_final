@@ -22,6 +22,9 @@ public:
 	float	x[MAX_PARTICLES];						// X Position
 	float	y[MAX_PARTICLES];						// Y Position
 	float	z[MAX_PARTICLES];						// Z Position
+	float	x_init[MAX_PARTICLES];						// X Position
+	float	y_init[MAX_PARTICLES];						// Y Position
+	float	z_init[MAX_PARTICLES];						// Z Position
 	float	xi[MAX_PARTICLES];						// X Direction
 	float	yi[MAX_PARTICLES];						// Y Direction
 	float	zi[MAX_PARTICLES];						// Z Direction
@@ -33,7 +36,8 @@ public:
 	Particle(void);
 	//Particle(float, float);
 	virtual ~Particle(void);
-
+	void initial_position(float x0, float y0, float z0);
+	void set_initial_position(float x0, float y0, float z0);
 	void init(int);
 
 	AUX_RGBImageRec *LoadBMP(char*);

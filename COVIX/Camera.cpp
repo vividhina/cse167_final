@@ -4,6 +4,7 @@ Camera::Camera()
 {
     c.identity();
     e.set(25.0, 10.0, 40.0);
+	e = e * 2;
     d.set(0.0, 0.0, 0.0);
     up.set(0.0, 1.0, 0.0);
     

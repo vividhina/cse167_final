@@ -13,6 +13,7 @@
 #include "Robot.h"
 #include "BodyParts.h"
 #include "Particle.h"
+#include "Floor.h"
 
 class Globals
 {
@@ -21,6 +22,7 @@ public:
     
     static Camera camera;
     static Cube cube;
+	static Floor floor;
 	//static Cube cube1;
 	//static Cube cube2;
 	static Cube Skybox;

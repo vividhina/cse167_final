@@ -28,7 +28,10 @@ public:
     virtual void update(UpdateData&);
     
     void spin(float);
-    
+	void test_pingyi(void);
+	void r_rotate(void);
+
+	float test_pingyi_length;
 };
 
 #endif

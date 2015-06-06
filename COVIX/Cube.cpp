@@ -55,13 +55,16 @@ void Cube::draw(DrawData& data)
 	material.apply();
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA );
-	float temp = 5.0;
+	float temp = 100.0;
 	for (float i = 0; i < temp; i++){
 		//GLUquadricObj *quadratic;
 		//quadratic = gluNewQuadric();
 		//gluQuadricNormals(quadratic, GLU_SMOOTH);
-		float a = 1-i/temp;
-		double s = 2 + 6 * (i / temp);
+		//float a = 1-i/temp;
+		float a;
+		if (i == 0) a = 1;
+		else a = 0.01;
+		double s = 1 + 4 * (i / temp);
 		glColor4f(0.0, 1.0, 1.0, a);
 		glutSolidCube(s);
 		//glutSolidSphere(s, 100, 100);
@@ -227,11 +230,6 @@ void Cube::drawTex(DrawData& data)
 	//Pop the save state off the matrix stack
 	//This will undo the multiply we did earlier
 	glPopMatrix();
-
-
-
-
-
 }
 
 
@@ -248,7 +246,24 @@ void Cube::spin(float radians)
     toWorld = toWorld * rotation;
 }
 
+void Cube::r_rotate(void)
+{
+	//Matrix4 rotation;
+	//rotation.makeRotateY(radians);
 
+	//toWorld = toWorld * rotation;
+}
 
-
+void Cube::test_pingyi(void)
+{
+	test_pingyi_length++;
+	Matrix4 rotation;
+	rotation.makeTranslate(-1, 0, 0);
+	toWorld = toWorld * rotation;
+	if (test_pingyi_length == 10)
+	{test_pingyi_length = 0;
+	Window::r_flag = 0;
+	}
+		
+}
 
